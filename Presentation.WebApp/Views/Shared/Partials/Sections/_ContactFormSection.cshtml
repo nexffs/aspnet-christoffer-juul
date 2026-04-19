@@ -1,0 +1,60 @@
+﻿@model ContactForm
+
+<section class="section__contact-form">
+    <img class="contact-form-image" src="~/images/contact-us-image.png" alt="Woman working out at the gym" />
+    <form id="contact-form" method="post" asp-action="Index" asp-controller="CustomerService" novalidate>
+        <div data-type="title" class="title">
+            <h3>Contact Us Today</h3>
+            <p>Ready to begin your fitness journey? Contact CoreFitness today and let our expert trainers guide you with the right program and support.</p>
+        </div>
+        <div data-type="first-name" class="form-group">
+            <label class="form-label" asp-for="FirstName"></label>
+            <div class="form-input-validation">
+                <input class="form-input" asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+        </div>
+        <div data-type="last-name" class="form-group">
+            <label class="form-label" asp-for="LastName"></label>
+            <div class="form-input-validation">
+                <input class="form-input" asp-for="LastName" />
+                <span asp-validation-for="LastName"></span>
+            </div>
+        </div>
+        <div data-type="email" class="form-group">
+            <label class="form-label" asp-for="Email"></label>
+            <div class="form-input-validation">
+                <input class="form-input" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div data-type="phone" class="form-group">
+            <label class="form-label" asp-for="Phone"></label>
+            <div class="form-input-validation">
+                <input class="form-input" asp-for="Phone" />
+                <span asp-validation-for="Phone"></span>
+            </div>
+        </div>
+        <div data-type="message" class="form-group">
+            <label class="form-label" asp-for="Message"></label>
+            <div class="form-input-validation">
+                <textarea class="form-textarea" asp-for="Message"></textarea>
+                <span asp-validation-for="Message"></span>
+            </div>
+        </div>
+        <div data-type="terms" class="form-group checkbox">
+            <div class="form-checkbox-validation">
+                <label class="form-checkbox-label">
+                    <input class="form-checkbox-input" asp-for="AcceptSavePersonalInformation" />
+                    <span class="form-checkbox-checkmark"></span>
+                    <label class="checkbox-label" asp-for="AcceptSavePersonalInformation"></label>
+                </label>
+                <span asp-validation-for="AcceptSavePersonalInformation"></span>
+            </div>
+        </div>
+
+        <div data-type="submit-button">
+            <button type="submit">Submit Message</button>
+        </div>
+    </form>
+</section>

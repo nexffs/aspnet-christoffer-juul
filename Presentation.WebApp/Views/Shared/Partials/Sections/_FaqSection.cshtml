@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Application.Faq.FaqItem>
+
+<section class="faq-section">
+    <div class="container">
+
+        <div class="faq-area">
+            <div class="faq-image">
+                <img src="~/images/faq-image.png" alt="Man working out at the gym" />
+            </div>
+
+            <div class="faq-content">
+
+                <div class="section-title">
+                    Frequently Asked Questions
+                </div>
+
+                <h2>Common questions about gym and training</h2>
+
+                @foreach (var item in Model.Select((value, index) => new { value, index }))
+                {
+                    <div class="faq-item @(item.index == 0 ? "active" : "")">
+                    
+                        <button class="faq-question">
+                            @item.value.Title
+                            <span class="icon"></span>
+                        </button>
+
+                        <div class="faq-answer">
+                            <p>@item.value.Description</p>
+
+                            @if (item.index == 0)
+                            {
+                                <ul>
+                                    <li>Every new member receives a personalized introduction</li>
+                                    <li>Workouts are designed to grow with you</li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>

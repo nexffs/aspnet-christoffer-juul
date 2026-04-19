@@ -1,0 +1,137 @@
+﻿@using Presentation.WebApp.Areas.Account.Models
+@model AboutMeViewModel
+@{
+    ViewData["Title"] = "My Account";
+    Layout = "Layouts/_AppLayout";
+}
+<partial name="Partials/Common/_PageTitleSection" />
+
+<div class="page_my-account">
+    <aside>
+        <div class="profile-image">
+            @if (!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+            {
+                <img src="@Url.Content(Model.ProfileImageUrl)" alt="User Profile Image" />
+            }
+            else
+            {
+                <img src="~/images/profile-image-avatar.png" alt="user profile image" />
+            }
+        </div>
+
+        <nav class="account-options-menu options-menu">
+            <div class="options-menu-title">
+                Options Menu
+            </div>
+            <ul class="options">
+                <li class="option-item">
+                    <a class="option-item-link" asp-area="Account" asp-controller="Account" asp-action="AboutMe"><span>About Me</span></a>
+                </li>
+                <li class="option-item">
+                    <a class="option-item-link" asp-area="Account" asp-controller="AccountMembership" asp-action="Index"><span>My Membership</span></a>
+                </li>
+                <li class="option-item">
+                    <a class="option-item-link" asp-area="Account" asp-controller="AccountBookings" asp-action="Index"><span>My Bookings</span></a>
+                </li>
+                <li class="option-item">
+                    <form method="post" asp-area="Account" asp-controller="Account" asp-action="SignOut">
+                        @Html.AntiForgeryToken()
+                        <button class="option-item-link" type="submit"><span>Sign Out</span></button>
+                    </form>
+                </li>
+            </ul>
+            <div class="remove-account">
+                <p class="remove-account-text">If you like to cancel your account click below</p>
+                <form method="post" asp-area="Account" asp-controller="Account" asp-action="RemoveAccount">
+                    @Html.AntiForgeryToken()
+                    <button class="remove-account-link" type="submit" onclick="return confirm('Är du säker på att du vill ta bort ditt konto? Detta går inte att ångra.');">Remove Account</button>
+                </form>
+            </div>
+        </nav>
+
+    </aside>
+    <main>
+        <section class="about-me">
+            <div class="title">
+                <h3>About Me</h3>
+            </div>
+            <form id="aboutMeForm" method="post" enctype="multipart/form-data" asp-area="Account" asp-controller="Account" asp-action="AboutMe" novalidate>
+                <div data-type="first-name" class="form-group">
+                    <label class="form-label" asp-for="AboutMeForm.FirstName"></label>
+                    <input class="form-input" asp-for="AboutMeForm.FirstName" />
+                    <span class="form-field-validation" asp-validation-for="AboutMeForm.FirstName"></span>
+                </div>
+                <div data-type="last-name" class="form-group">
+                    <label class="form-label" asp-for="AboutMeForm.LastName"></label>
+                    <input class="form-input" asp-for="AboutMeForm.LastName" />
+                    <span class="form-field-validation" asp-validation-for="AboutMeForm.LastName"></span>
+                </div>
+                <div data-type="email" class="form-group">
+                    <label class="form-label" asp-for="AboutMeForm.Email"></label>
+                    <input class="form-input" asp-for="AboutMeForm.Email" readonly />
+                    <span class="form-field-validation" asp-validation-for="AboutMeForm.Email"></span>
+                </div>
+                <div data-type="phone" class="form-group">
+                    <label class="form-label" asp-for="AboutMeForm.PhoneNumber"></label>
+                    <input class="form-input" asp-for="AboutMeForm.PhoneNumber" />
+                    <span class="form-field-validation" asp-validation-for="AboutMeForm.PhoneNumber"></span>
+                </div>
+                <div data-type="file-upload" class="form-group file-upload">
+                    <label class="form-label" asp-for="AboutMeForm.ProfileImage"></label>
+
+                    <div class="file-upload-wrapper">
+                        <span class="file-upload-text">Upload Profile Image</span>
+
+                        <label class="file-upload-button">
+                            Browse
+                            <input asp-for="AboutMeForm.ProfileImage" type="file" hidden />
+                        </label>
+                    </div>
+
+                    <span class="form-field-validation" asp-validation-for="AboutMeForm.ProfileImage"></span>
+                </div>
+                <div data-type="submit-button" class="form-group">
+                    <button class="btn" type="submit">Save</button>
+                </div>
+
+                <div asp-validation-summary="ModelOnly"></div>
+                @Html.AntiForgeryToken()
+            </form>
+        </section>
+
+        <section class="statistics">
+            <h3>My Statistics</h3>
+
+            <div class="stat-item">
+                <div class="stat-header">
+                    <span>Check-In (last 30 days)</span>
+                    <span>25</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-header">
+                    <span>Weight Goal</span>
+                    <span>50%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 50%;"></div>
+                </div>
+            </div>
+
+            <div class="stat-item">
+                <div class="stat-header">
+                    <span>Current BMI</span>
+                    <span>27</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 70%;"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>

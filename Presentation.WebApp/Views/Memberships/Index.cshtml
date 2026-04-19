@@ -1,0 +1,17 @@
+﻿@model CustomerServiceViewModel
+
+@{
+    ViewData["Title"] = "Our Membership Offers";
+    Layout = "Layouts/_AppLayout";
+}
+
+<div class="page_memberships">
+    <partial name="Partials/Common/_PageTitleSection" />
+
+    <div class="container">
+        <partial name="Partials/Sections/_MembershipsSection" />
+
+        <partial name="Partials/Sections/_FaqSection" model="Model.FaqItems" />
+    </div>
+
+</div>

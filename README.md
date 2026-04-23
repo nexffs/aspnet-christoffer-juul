@@ -1,31 +1,42 @@
-# 🏋️ CoreFitness WebApp
+# CoreFitness WebApp
 
-Detta är en ASP.NET Core MVC-webbapplikation för ett gym, där användare kan hantera sitt konto, medlemskap och bokningar.
+Detta är en ASP.NET Core-webbapplikation för ett gym, utvecklad i **.NET 10** och strukturerad enligt principerna för **Clean Architecture**. Användare kan hantera sitt konto, medlemskap och bokningar.
 
 ---
 
-## 🚀 Kom igång lokalt
+## Struktur
+
+Lösningen är uppdelad i fyra huvudsakliga projekt:
+
+* **Presentation.WebApp**: Webbgränssnittet som hanterar routing, ASP.NET Core MVC / Razor Pages och cookie-baserad autentisering.
+* **Application**: Applikationsspecifik affärslogik, gränssnitt (interfaces) och DTOs (Data Transfer Objects).
+* **Domain**: Kärnan i projektet med domänentiteter.
+* **Infrastructure**: Hanterar dataåtkomst via Entity Framework Core och initiering av databas.
+
+---
+
+## Kom igång lokalt
 
 Följ stegen nedan för att köra projektet på din egen dator.
 
 ---
 
-## 📦 Krav
+## Krav
 
 Se till att du har följande installerat:
 
-* .NET SDK (rekommenderat: .NET 8 eller enligt projektets version)
-* Visual Studio / Visual Studio Code
+* [.NET 10 SDK](https://dotnet.microsoft.com/download)
+* Visual Studio 2026 (eller liknande kompatibel editor)
 * SQL Server (LocalDB eller full version)
 
 ---
 
-## 🔧 Installation
+## Installation
 
 ### 1. Klona projektet
 
 ```bash
-git clone https://github.com/<your-repo>/corefitness-webapp.git
+git clone https://github.com/din-repo/corefitness-webapp.git
 cd corefitness-webapp
 ```
 
@@ -33,23 +44,17 @@ cd corefitness-webapp
 
 ### 2. Ställ in databasen
 
-1. Öppna `appsettings.json`
-2. Uppdatera din connection string:
-
-```json
-"ConnectionStrings": {
-  "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=CoreFitnessDb;Trusted_Connection=True;"
-}
-```
+1. Öppna `Presentation.WebApp/appsettings.json`
+2. Kontrollera att connection string är korrekt inställd för din miljö.
 
 ---
 
 ### 3. Kör migrations
 
-Om projektet använder Entity Framework:
+Om databasen inte initieras automatiskt via `InfrastructureInitializer`, kör följande:
 
 ```bash
-dotnet ef database update
+dotnet ef database update --project Infrastructure --startup-project Presentation.WebApp
 ```
 
 ---
@@ -57,21 +62,22 @@ dotnet ef database update
 ### 4. Starta projektet
 
 ```bash
+cd Presentation.WebApp
 dotnet run
 ```
 
 eller via Visual Studio:
 
-* Klicka på **Start (F5)**
+* Klicka på **Start (F5)** (Säkerställ att `Presentation.WebApp` är startprojektet).
 
 ---
 
 ## 🌐 Öppna i webbläsaren
 
-När projektet startar visas en URL, t.ex:
+När projektet startar visas en URL i terminalen eller i Visual Studio, t.ex:
 
-```
-https://localhost:5001
+```text
+https://localhost:4443
 ```
 
 Öppna den i din webbläsare.
@@ -83,80 +89,6 @@ https://localhost:5001
 * Hantera användarkonto (About Me)
 * Ladda upp profilbild
 * Visa medlemskap
-* Visa bokningar
 * Logga ut / ta bort konto
-
----
-
-## 📁 Projektstruktur (översikt)
-
-```
-/Controllers
-/Views
-/Models
-/Services
-/wwwroot (CSS, bilder, JS)
-/Areas/Account
-```
-
----
-
-## 🎨 Styling
-
-* CSS är uppdelad per sida/sektion
-* Font Awesome används för ikoner
-* Design baserad på Figma
-
----
-
-## ⚠️ Vanliga problem
-
-### 🔹 Bilder laddas inte
-
-Kontrollera att:
-
-```
-wwwroot/images/
-```
-
-innehåller rätt filer.
-
----
-
-### 🔹 Databasfel
-
-* Kör `dotnet ef database update`
-* Kontrollera connection string
-
----
-
-### 🔹 CSS laddas inte
-
-* Kontrollera att `wwwroot` används korrekt
-* Hard refresh i browser (`Ctrl + F5`)
-
----
-
-## 🛠️ Utveckling
-
-För att fortsätta utveckla:
-
-```bash
-dotnet watch run
-```
-
-Detta uppdaterar sidan automatiskt vid ändringar.
-
----
-
-## 📄 Licens
-
-Detta projekt är endast för utbildningssyfte.
-
----
-
-## ✨ Författare
-
-Utvecklad av: *Christoffer Juul*
 
 ---

@@ -72,7 +72,7 @@ eller via Visual Studio:
 
 ---
 
-## 🌐 Öppna i webbläsaren
+## Öppna i webbläsaren
 
 När projektet startar visas en URL i terminalen eller i Visual Studio, t.ex:
 
@@ -84,7 +84,7 @@ https://localhost:4443
 
 ---
 
-## 👤 Funktioner
+## Funktioner
 
 * Hantera användarkonto (About Me)
 * Ladda upp profilbild
